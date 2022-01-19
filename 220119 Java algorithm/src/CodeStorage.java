@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Storage {
+public class CodeStorage {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -9,6 +9,29 @@ public class Storage {
 
 	}
 
+}
+
+/* 1008 BufferedReader, double type
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException{
+		// TODO Auto-generated method stub
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		String str = br.readLine();
+		StringTokenizer st = new StringTokenizer(str, " ");
+		int a = Integer.parseInt(st.nextToken());
+		int b = Integer.parseInt(st.nextToken());
+		
+		System.out.println((double)a/b); //float는 4byte, double 타입은 8byte까지 표현가능하다.
+		
+	}
 }
 
 /* Used BufferedWriter
