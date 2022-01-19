@@ -10,6 +10,15 @@ public class CodeStorage {
 	}
 
 }
+/* 2588
+int a = sc.nextInt();
+int b = sc.nextInt();
+
+System.out.println(a*(b%10));
+System.out.println(a*((b%100)/10));
+System.out.println(a*((b%1000)/100));
+System.out.println((a*(b%10))+((a*((b%100)/10))*10)+((a*((b%1000)/100))*100)); //사실 a*b로 충분..
+*/
 
 /* 1008 BufferedReader, double type
 import java.io.BufferedReader;
