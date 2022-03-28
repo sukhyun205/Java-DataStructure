@@ -1,13 +1,31 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+//확대 축소기능을 메소드 없이 구현을 했는데, 메소드로 구현해야됨
+//메소드로 구현하기 위해서, 꼭 위에 class선언을 따로 해야하는지?
+//main메소드 안에 확대축소기능 메소드를 구현할 수는 없는지?
 
+
+class Function {
+	
+	public void resize(int newSize, int size, int arr[]) { //resize1: 배열크기2배확장
+		int tmp[] = new int[newSize]; //임시배열 생성, 배열크기2배확장
+		for (int i=0; i<size; i++) {
+			tmp[i] = arr[i]; //데이터길이가 기존의 2배인 임시배열tmp에 기존arr값을 임시저장
+		} //와 arr변수에 tmp변수를 넣어서 배열길이가 2배로 만듦@@
+		arr = tmp;
+		System.out.println(">> "+arr.length);
+		
+	}
+}
 
 
 public class ArrayList2 {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -21,7 +39,11 @@ public class ArrayList2 {
 		System.out.print("배열의 size(데이터 갯수)를 입력하시오>> ");
 		size = sc.nextInt();
 		
+		Function fun = new Function();
+		
 		int []arr = new int[arr_length];
+		
+
 		
 		System.out.print("넣고자하는 정수 데이터값을 띄어쓰기로 입력하시오>> ");
 		while (true) {
@@ -77,28 +99,37 @@ public class ArrayList2 {
 				System.out.print("삽입할 값 입력>> ");
 				int data = sc.nextInt();
 				
-				if (size>=arr_length) {    //전체 배열크기를 2배로 확장
-					arr_length*=2;
-					System.out.println("arr_length= "+arr_length);
-				} 
-
-				for(int i=size; i>=index; i--) {
-						arr[i] = arr[i-1];  //전체 배열크기(arr_length)를 늘려줬는데도 불구하고 여기서 error가 뜨는 이유가 무엇일까요????
+				if (size == arr.length) {
+					fun.resize(2*arr.length,size,arr);
+					for (int i=size; i>=index; i--) {
+						arr[i] = arr[i-1];
+					}
+					arr[index-1] = data;
+				    size++;				
+					System.out.println("현재 데이터 갯수(size) = "+size+"개");
+					System.out.print("삽입값 포함 배열출력: ");
+					for (int i=0; i<size; i++) {
+						System.out.print(arr[i] + " ");
+					}
+					System.out.println("\n");
+					break;
+				} else {
+					for (int i=size; i>=index; i--) {
+						arr[i] = arr[i-1];
+					}
+					arr[index-1] = data;
+				    size++;				
+					System.out.println("현재 데이터 갯수(size) = "+size+"개");
+					System.out.print("삽입값 포함 배열출력: ");
+					for (int i=0; i<size; i++) {
+						System.out.print(arr[i] + " ");
+					}
+					System.out.println("\n");
+					break;
+					
 				}
-				arr[index-1] = data;
-
-				size++;
-				System.out.println("현재 데이터 갯수(size) = "+size+"개");
-
 				
-				//삽입된 값 포함 전체배열 출력
-				System.out.print("삽입값 포함 배열출력: ");
-				for (int i=0; i<size; i++) {
-					System.out.print(arr[i] + " ");
-				}
-				System.out.println("\n");
-				break;
-
+				
 				
 				
 				
@@ -111,9 +142,12 @@ public class ArrayList2 {
 		}
 		
 		
+		
+		
 		sc.close();
 
 	}
+	
 	
 	static void menu() {
 		System.out.println(" [menu] ]");
