@@ -1,56 +1,56 @@
 
-
-
+//2019113394 권석현
+//실습과제 1 배열을 활용한 스택 구현
 
 class ArrayStack{
 	
 	private int top;
-	private int size;
 	private Object arr[];
 	
-	ArrayStack(int s){
+	ArrayStack(){
 		top = -1; //배열 생성시 top -1초기화
-		this.size = s;
-		arr = new Object[this.size];
+		arr = new Object[1]; //처음 배열길이 arr.length=1, size=top+1=0 //top의 값이 변하면 +1 size값도 +1
 	}
 	
-	public void push(Object d) {
-		
-		if(size == arr.length) {
-			resize(arr.length*2);
-		}
-		
-		arr[++top] = d;
-		System.out.println("삽입된 데이터: "+d+" 현재top = "+top);
+	public boolean isEmpty() {
+		return (top == -1); //top이 -1일때(스택이 비어있을 때 true return)
 
 	}
 	
+	public int size() {
+		return top+1;
+	}
+	
+	public void push(Object d) {
+		if(arr.length==size()) {
+			resize(arr.length*2);
+		}
+		arr[++top]=d;
+	}
+	
 	public Object pop() {
-		System.out.println("삭제된 데이터: "+arr[top]);
+		if(size()<=arr.length/4) {
+			resize(arr.length/2);
+		}
 		return arr[top--];
 	}
 	
 	public Object peek() {
-		System.out.println("현재 top이 가르키는 데이터: "+arr[top]+" 현재top = "+top);
+		System.out.println("top이 가르키는 데이터: "+arr[top]+" top = "+top);
 		return arr[top];
 	}
 	
 	public void print() {
-		System.out.print("현재 ArrayStack>> ");
+		System.out.print("스택 현황>> ");
 		for(int i=0; i<=top; i++) {
 			System.out.print(arr[i] + " ");
 		} System.out.println();
 	}
 	
 	
-	
-	
-	
-	
-	
 	public void resize(int newSize) {
 		Object tmp[] = new Object[newSize];
-		for(int i=0; i<size; i++) {
+		for(int i=0; i<size(); i++) {
 			tmp[i]=arr[i];
 		}
 		arr = tmp;
@@ -58,27 +58,28 @@ class ArrayStack{
 	
 }
 
+	
 
 public class StackArray {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		int size=2;
+		System.out.println("실습과제 1 배열을 활용한 스택 구현");
 		
-		ArrayStack as = new ArrayStack(size);
+		ArrayStack stack = new ArrayStack();
 		
-		as.push(10);
-		as.push(20);
-		as.push(30);
+		stack.push(10);
+		stack.print();
+		stack.push(20);
+		stack.print();
+		stack.push(30);
+		stack.print();
+		stack.pop();
+		stack.print();
+		stack.peek();
 		
-		as.pop();
-		as.print();
-		as.peek();
-		
-		
-		
-
 	}
+	
 
 }
