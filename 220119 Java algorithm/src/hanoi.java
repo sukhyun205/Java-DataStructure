@@ -15,7 +15,7 @@ class HanoiTower{
 		}
 		else {
 			move(from, to, middle, n-1); //n-1원판을 from에서 가운데 middle로 이동
-			System.out.printf(n+"번원판"+ " = " + "("+from+")에서 ->"+ "(" + to+")로 이동"); //n원판을 from에서 to로 이동
+			System.out.printf(n+"번원판"+ " = " + "("+from+")에서 -> "+ "(" + to+")로 이동"); //n원판을 from에서 to로 이동
 			System.out.println();
 			move(middle, from, to, n-1); //n-1원판을 middle에서 최종적으로 to로 이동
 		}
